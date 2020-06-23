@@ -1,0 +1,25 @@
+<div class="row mb-3 justify-content-md-center">
+  <div class="col-md-8">
+    <div class="card">
+      <div class="card-body">
+        <form (submit)="onLogin(loginForm)" #loginForm="ngForm" class="form-signin">
+          <!-- username -->
+          <div class="form-label-group">
+            <input ngModel required id="username" name="username" type="text" placeholder="Username" class="form-control">
+            <label for="username">Username</label>
+          </div>
+          <!-- password -->
+          <div class="form-label-group">
+            <input ngModel required id="password" name="password" type="password" placeholder="Password" class="form-control">
+            <label for="password">Password</label>
+            <div *ngIf="isLoginFailed" class="invalid-feedback">Username already used</div>
+          </div>
+          <button class="btn btn-info btn-block" type="submit" [disabled]="isLoading">
+            <span *ngIf="isLoading" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+            {{ isLoading ? 'Loading...' : 'Sign in' }}
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

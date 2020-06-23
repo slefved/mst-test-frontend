@@ -1,0 +1,67 @@
+<div class="row">
+  <div class="col">
+    <form (submit)="onSearch()">
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label for="propinsi">Propinsi</label>
+          <select [(ngModel)]="selectedPropinsi" (change)="onPropinsiChange()" class="form-control" name="propinsi" id="propinsi">
+            <option value="">--- select ---</option>
+            <option *ngFor="let propinsi of propinsiList" [ngValue]="propinsi">{{ propinsi }}</option>
+          </select>
+        </div>
+        <div class="form-group col-md-6">
+          <label for="kabupaten">Kabupaten</label>
+          <select [(ngModel)]="selectedKabupaten" class="form-control" name="kabupaten" id="kabupaten">
+            <option value="">--- select ---</option>
+            <option *ngFor="let kabupaten of kabupatenList" [value]="kabupaten">{{ kabupaten }}</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="keywords">Keywords</label>
+        <input [(ngModel)]="keywords" id="keywords" name="keywords" type="text" class="form-control">
+      </div>
+    </form>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-6 mb-2">
+    <nav *ngIf="totalItem > 0" aria-label="Page navigation example">
+      <ul class="pagination">
+        <li class="page-item" [ngClass]="{ 'disabled': currentPage == 1}">
+          <button type="button" class="page-link btn-link" (click)="onPrevPage()">prev</button>
+        </li>
+        <li class="page-item disabled"><a class="page-link" href="#">page {{ currentPage }} of {{ totalPage }}</a></li>
+        <li class="page-item" [ngClass]="{ 'disabled': currentPage == totalPage}">
+          <button type="button" class="page-link btn-link" (click)="onNextPage()">next</button>
+        </li>
+      </ul>
+    </nav>
+  </div>
+  <div class="col-md-6 mb-2">
+    <button (click)="onSearch()" type="button" class="btn btn-block btn-info">Search</button>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col mb-3">
+    <table class="table table-striped">
+      <thead class="table-success">
+        <th>Kode Pos</th>
+        <th>Kelurahan</th>
+        <th>Kecamatan</th>
+      </thead>
+      <tbody>
+        <tr *ngIf="areas.length == 0">
+          <td colspan="3">No areas found</td>
+        </tr>
+        <tr *ngFor="let area of areas, index as i">
+          <td>{{ area.kode_pos }}</td>
+          <td>{{ area.kelurahan }}</td>
+          <td>{{ area.kecamatan }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

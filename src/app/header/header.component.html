@@ -1,0 +1,33 @@
+<nav class="navbar navbar-expand-md navbar-dark bg-info">
+  <div class="container">
+    <a class="navbar-brand" routerLink="">MST-Test.com</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul *ngIf="isAuthenticated" class="navbar-nav mr-auto">
+        <li class="nav-item">
+          <a class="nav-link" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" routerLink="">Areas</a>
+        </li>
+      </ul>
+      <ul *ngIf="isAuthenticated" class="navbar-nav ml-auto">
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="ddlUser" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            {{ username }}
+          </a>
+          <div class="dropdown-menu" aria-labelledby="ddlUser">
+            <button (click)="onLogout()" class="dropdown-item btn btn-link">Logout</button>
+          </div>
+        </li>
+      </ul>
+      <ul *ngIf="!isAuthenticated" class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <a class="nav-link" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" routerLink="login">Login</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" routerLink="signin">Signup</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
