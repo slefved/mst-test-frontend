@@ -11,10 +11,12 @@ export class AuthService {
   constructor(private http: HttpClient) { }
 
   signup(payload: AuthForm) {
-    return this.http.post<ApiResult<AuthResponse>>("http://localhost:3000/api/auth/signup", payload);
+    return this.http.post<ApiResult<AuthResponse>>("http://mitrasolusi-env.eba-zjq2m2px.us-east-2.elasticbeanstalk.com/api/auth/signup", payload);
   }
 
   login(payload: AuthForm) {
-    return this.http.post<ApiResult<AuthResponse>>("http://localhost:3000/api/auth/login", payload);
+    return this.http.post<ApiResult<AuthResponse>>("http://mitrasolusi-env.eba-zjq2m2px.us-east-2.elasticbeanstalk.com/api/auth/login", payload);
   }
 }
+
+// http://mitrasolusi-env.eba-zjq2m2px.us-east-2.elasticbeanstalk.com/api/auth/signup

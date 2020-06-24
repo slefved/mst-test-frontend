@@ -17,6 +17,8 @@ export class AreaListComponent implements OnInit, OnDestroy {
   totalItem: number;
   totalPage: number;
 
+  isLoading = false;
+
   // search
   propinsiList: string[];
   kabupatenList: string[];
@@ -29,25 +31,31 @@ export class AreaListComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.areaRepository.getAreas(this.currentPage, this.pageSize);
+    this.isLoading = true;
     this.areaRepository.getPropinsi().subscribe(res => {
       this.propinsiList = res.data;
+      this.isLoading = false;
     })
     this.areaSubscriber = this.areaRepository.getAreaListener().subscribe(res => {
       this.totalItem = res.total;
       this.areas = res.areas;
       this.totalPage = Math.ceil(this.totalItem / this.pageSize);
+      this.isLoading = false;
     })
   }
 
   onSearch() {
+    this.isLoading = true;
     this.currentPage = 1;
     this.areaRepository.getAreas(this.currentPage, this.pageSize, this.selectedPropinsi, this.selectedKabupaten, this.keywords);
   }
 
   onNextPage() {
+    this.isLoading = true;
     this.areaRepository.getAreas(++this.currentPage, this.pageSize, this.selectedPropinsi, this.selectedKabupaten, this.keywords);
   }
   onPrevPage() {
+    this.isLoading = true;
     this.areaRepository.getAreas(--this.currentPage, this.pageSize, this.selectedPropinsi, this.selectedKabupaten, this.keywords);
   }
 
